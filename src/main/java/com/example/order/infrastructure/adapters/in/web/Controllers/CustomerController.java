@@ -76,7 +76,12 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerResponseDTO saveCustomer(@RequestBody CustomerRequestDTO data) {
         try {
-            Customer newCustomer = new Customer(data.name(), data.email(), data.cpf());
+//            Customer newCustomer = new Customer(data.name(), data.email(), data.cpf());
+            Customer newCustomer = new Customer();
+            newCustomer.setName(data.name());
+            newCustomer.setEmail(data.email());
+            newCustomer.setCpf(data.cpf());
+
             Customer createdCustomer = createCustomerUseCase.execute(newCustomer); // Chamada ao novo serviço
             return CustomerResponseDTO.fromDomain(createdCustomer);
         } catch (IllegalArgumentException e) {
