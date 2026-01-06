@@ -54,9 +54,14 @@
 //}
 package com.example.order.domain.entities;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 @Data                 // Gera Getters, Setters, Equals, HashCode e ToString
 @AllArgsConstructor   // Gera o construtor com TODOS os campos (substitui o manual)
@@ -64,8 +69,17 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
     private Long id;
+
+    // Adicionado para passar no teste "deveDetectarNomeEmBranco"
+    @NotBlank(message = "O nome não pode estar em branco")
     private String name;
+
+    // Adicionado para passar no teste "deveDetectarEmailInvalido"
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "Formato de email inválido")
     private String email;
+
+    @Range(min = 10000000000L, max = 99999999999L, message = "CPF deve ter 11 dígitos")
     private Long cpf;
 
 }
