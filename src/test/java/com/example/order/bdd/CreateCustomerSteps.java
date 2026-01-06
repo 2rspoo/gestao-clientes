@@ -31,7 +31,7 @@ public class CreateCustomerSteps {
 
         // --- PREPARAÇÃO DO OUTPUT (O que o Mock vai retornar) ---
         outputEsperado = new Customer();
-        outputEsperado.setId(2L);
+        outputEsperado.setId(1L);
         outputEsperado.setName(nome);
         outputEsperado.setEmail(email);
         outputEsperado.setCpf(39475318852L);
