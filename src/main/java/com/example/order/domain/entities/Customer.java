@@ -80,6 +80,6 @@ public class Customer {
     private String email;
 
     @Range(min = 10000000000L, max = 99999999999L, message = "CPF deve ter 11 dígitos")
-    private Long cpf;
+    private String cpf;
 
 }

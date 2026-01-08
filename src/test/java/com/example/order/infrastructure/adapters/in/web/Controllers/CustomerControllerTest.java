@@ -54,8 +54,8 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customer - Deve retornar lista de clientes (200 OK)")
     void deveRetornarListaDeClientes() throws Exception {
-        Customer c1 = new Customer(1L, "Maria", "maria@test.com", 11122233344L);
-        Customer c2 = new Customer(2L, "Joao", "joao@test.com", 55566677788L);
+        Customer c1 = new Customer(1L, "Maria", "maria@test.com", "11122233344");
+        Customer c2 = new Customer(2L, "Joao", "joao@test.com", "55566677788");
         List<Customer> customers = Arrays.asList(c1, c2);
 
         when(getAllCustomersUseCase.execute()).thenReturn(customers);
@@ -70,7 +70,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customer/cpf/{cpf} - Deve retornar cliente quando existir (200 OK)")
     void deveRetornarClientePorCpf() throws Exception {
-        Long cpf = 12345678900L;
+        String cpf = "12345678900";
         Customer customer = new Customer(1L, "Carlos", "carlos@test.com", cpf);
 
         when(getCustomerByCpfUseCase.execute(cpf)).thenReturn(Optional.of(customer));
@@ -84,7 +84,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customer/cpf/{cpf} - Deve retornar 404 quando cliente não existir")
     void deveRetornar404QuandoCpfNaoEncontrado() throws Exception {
-        Long cpf = 99999999999L;
+        String cpf = "99999999999";
         when(getCustomerByCpfUseCase.execute(cpf)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/customer/cpf/{cpf}", cpf))
@@ -94,8 +94,8 @@ class CustomerControllerTest {
     @Test
     @DisplayName("POST /customer - Deve criar cliente com sucesso (201 Created)")
     void deveCriarCliente() throws Exception {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Ana", "ana@test.com", 12345678900L);
-        Customer createdCustomer = new Customer(10L, "Ana", "ana@test.com", 12345678900L);
+        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Ana", "ana@test.com", "12345678900");
+        Customer createdCustomer = new Customer(10L, "Ana", "ana@test.com", "12345678900");
 
         when(createCustomerUseCase.execute(any(Customer.class))).thenReturn(createdCustomer);
 
@@ -110,7 +110,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("POST /customer - Deve retornar 409 Conflict se cliente já existe")
     void deveRetornarConflitoSeClienteJaExiste() throws Exception {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Duplicado", "dup@test.com", 11111111111L);
+        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Duplicado", "dup@test.com", "11111111111");
 
         when(createCustomerUseCase.execute(any(Customer.class)))
                 .thenThrow(new IllegalArgumentException("Customer with this CPF already exists."));
@@ -124,8 +124,8 @@ class CustomerControllerTest {
     @Test
     @DisplayName("PUT /customer - Deve atualizar cliente com sucesso (200 OK)")
     void deveAtualizarCliente() throws Exception {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO(1L, "Nome Novo", "novo@test.com", 12345678900L);
-        Customer updatedCustomer = new Customer(1L, "Nome Novo", "novo@test.com", 12345678900L);
+        CustomerRequestDTO requestDTO = new CustomerRequestDTO(1L, "Nome Novo", "novo@test.com", "12345678900");
+        Customer updatedCustomer = new Customer(1L, "Nome Novo", "novo@test.com", "12345678900");
 
         when(updateCustomerUseCase.execute(any(Customer.class))).thenReturn(updatedCustomer);
 
@@ -139,7 +139,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("PUT /customer - Deve retornar 400 Bad Request se ID for nulo")
     void deveRetornarBadRequestSeIdNulo() throws Exception {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Sem ID", "email@test.com", 123L);
+        CustomerRequestDTO requestDTO = new CustomerRequestDTO(null, "Sem ID", "email@test.com", "123");
 
         mockMvc.perform(put("/customer")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -150,7 +150,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("PUT /customer - Deve retornar 404 Not Found se cliente não existir para atualização")
     void deveRetornarNotFoundAoAtualizarInexistente() throws Exception {
-        CustomerRequestDTO requestDTO = new CustomerRequestDTO(99L, "Inexistente", "email@test.com", 123L);
+        CustomerRequestDTO requestDTO = new CustomerRequestDTO(99L, "Inexistente", "email@test.com", "123");
 
         when(updateCustomerUseCase.execute(any(Customer.class)))
                 .thenThrow(new CustomerNotFoundException("Customer not found"));

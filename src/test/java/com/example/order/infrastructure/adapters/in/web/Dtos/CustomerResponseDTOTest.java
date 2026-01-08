@@ -26,7 +26,7 @@ class CustomerResponseDTOTest {
         customer.setId(10L);
         customer.setName("Teste de Mapeamento");
         customer.setEmail("map@teste.com");
-        customer.setCpf(12345678900L);
+        customer.setCpf("12345678900");
 
         // Act
         CustomerResponseDTO dto = CustomerResponseDTO.fromDomain(customer);
@@ -49,7 +49,7 @@ class CustomerResponseDTOTest {
                 1L,
                 "Maria",
                 "maria@teste.com",
-                98765432100L
+                "98765432100"
         );
 
         // Act
@@ -60,7 +60,7 @@ class CustomerResponseDTOTest {
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);
         assertThat(result).extractingJsonPathStringValue("$.name").isEqualTo("Maria");
         assertThat(result).extractingJsonPathStringValue("$.email").isEqualTo("maria@teste.com");
-        assertThat(result).extractingJsonPathNumberValue("$.cpf").isEqualTo(98765432100L);
+        assertThat(result).extractingJsonPathStringValue("$.cpf").isEqualTo("98765432100");
     }
 
     @Test
@@ -72,7 +72,7 @@ class CustomerResponseDTOTest {
                     "id": 5,
                     "name": "João",
                     "email": "joao@teste.com",
-                    "cpf": 11122233344
+                    "cpf": "11122233344"
                 }
                 """;
 
@@ -84,7 +84,7 @@ class CustomerResponseDTOTest {
         assertThat(dto.getId()).isEqualTo(5L);
         assertThat(dto.getName()).isEqualTo("João");
         assertThat(dto.getEmail()).isEqualTo("joao@teste.com");
-        assertThat(dto.getCpf()).isEqualTo(11122233344L);
+        assertThat(dto.getCpf()).isEqualTo("11122233344");
     }
 
     @Test
@@ -96,11 +96,11 @@ class CustomerResponseDTOTest {
         dto.setId(1L);
         dto.setName("Teste");
         dto.setEmail("teste@email.com");
-        dto.setCpf(123L);
+        dto.setCpf("123");
 
         assertThat(dto.getId()).isEqualTo(1L);
         assertThat(dto.getName()).isEqualTo("Teste");
         assertThat(dto.getEmail()).isEqualTo("teste@email.com");
-        assertThat(dto.getCpf()).isEqualTo(123L);
+        assertThat(dto.getCpf()).isEqualTo("123");
     }
 }

@@ -23,7 +23,7 @@ class CustomerRequestDTOTest {
                 1L,
                 "Maria",
                 "maria@teste.com",
-                12345678900L
+                "12345678900"
         );
 
         // Act
@@ -34,7 +34,7 @@ class CustomerRequestDTOTest {
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);
         assertThat(result).extractingJsonPathStringValue("$.name").isEqualTo("Maria");
         assertThat(result).extractingJsonPathStringValue("$.email").isEqualTo("maria@teste.com");
-        assertThat(result).extractingJsonPathNumberValue("$.cpf").isEqualTo(12345678900L);
+        assertThat(result).extractingJsonPathStringValue("$.cpf").isEqualTo("12345678900");
     }
 
     @Test
@@ -46,7 +46,7 @@ class CustomerRequestDTOTest {
                     "id": 2,
                     "name": "João",
                     "email": "joao@teste.com",
-                    "cpf": 98765432100
+                    "cpf": "98765432100"
                 }
                 """;
 
@@ -57,6 +57,6 @@ class CustomerRequestDTOTest {
         assertThat(dto.id()).isEqualTo(2L);
         assertThat(dto.name()).isEqualTo("João");
         assertThat(dto.email()).isEqualTo("joao@teste.com");
-        assertThat(dto.cpf()).isEqualTo(98765432100L);
+        assertThat(dto.cpf()).isEqualTo("98765432100");
     }
 }

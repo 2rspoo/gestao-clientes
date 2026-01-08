@@ -28,7 +28,7 @@ public class CustomerJpaAdapter implements CustomerRepositoryPort {
     }
 
     @Override
-    public Optional<Customer> findByCpf(Long cpf) {
+    public Optional<Customer> findByCpf(String cpf) {
         return jpaRepository.findByCpf(cpf)
                 .map(CustomerJpaEntity::toDomain);
     }

@@ -28,7 +28,7 @@ public class CustomerService implements
     }
 
     @Override
-    public Optional<Customer> execute(Long cpf) {
+    public Optional<Customer> execute(String cpf) {
         return customerRepositoryPort.findByCpf(cpf);
     }
 

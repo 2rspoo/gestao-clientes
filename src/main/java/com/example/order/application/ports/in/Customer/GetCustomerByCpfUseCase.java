@@ -5,5 +5,5 @@ import com.example.order.domain.entities.Customer;
 import java.util.Optional;
 
 public interface GetCustomerByCpfUseCase {
-    Optional<Customer> execute(Long cpf);
+    Optional<Customer> execute(String cpf);
 }

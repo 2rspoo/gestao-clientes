@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface SpringDataJpaCustomerRepository extends JpaRepository<CustomerJpaEntity, Long> {
-    Optional<CustomerJpaEntity> findByCpf(Long cpf);
+    Optional<CustomerJpaEntity> findByCpf(String cpf);
 }
