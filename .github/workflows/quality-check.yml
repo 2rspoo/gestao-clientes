@@ -45,7 +45,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # O segredo que você criou
         run: |
           mvn -B sonar:sonar \
-            -Dsonar.projectKey=SUA_KEY_AQUI \
-            -Dsonar.organization=SUA_ORG_AQUI \
+            -Dsonar.projectKey=2rspoo_gestao-clientes  \
+            -Dsonar.organization=2rspoo \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.coverage.jacoco.xmlReportPaths=**/target/site/jacoco/jacoco.xml
