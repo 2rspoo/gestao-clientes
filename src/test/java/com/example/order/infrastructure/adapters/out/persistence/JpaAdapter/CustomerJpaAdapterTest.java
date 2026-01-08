@@ -31,8 +31,8 @@ class CustomerJpaAdapterTest {
     @DisplayName("Deve retornar lista de Customers (Domínio) ao buscar todos")
     void deveRetornarTodos() {
         // Arrange
-        CustomerJpaEntity entity1 = new CustomerJpaEntity(1L, "Maria", "maria@test.com", 111L);
-        CustomerJpaEntity entity2 = new CustomerJpaEntity(2L, "Joao", "joao@test.com", 222L);
+        CustomerJpaEntity entity1 = new CustomerJpaEntity(1L, "Maria", "maria@test.com", "111");
+        CustomerJpaEntity entity2 = new CustomerJpaEntity(2L, "Joao", "joao@test.com", "222");
 
         when(springDataRepository.findAll()).thenReturn(Arrays.asList(entity1, entity2));
 
@@ -52,7 +52,7 @@ class CustomerJpaAdapterTest {
     @DisplayName("Deve retornar Customer (Domínio) quando encontrar por CPF")
     void deveRetornarPorCpfQuandoEncontrado() {
         // Arrange
-        Long cpf = 12345678900L;
+        String cpf = "12345678900";
         CustomerJpaEntity entity = new CustomerJpaEntity(1L, "Carlos", "carlos@test.com", cpf);
 
         when(springDataRepository.findByCpf(cpf)).thenReturn(Optional.of(entity));
@@ -70,7 +70,7 @@ class CustomerJpaAdapterTest {
     @DisplayName("Deve retornar Vazio quando não encontrar por CPF")
     void deveRetornarVazioPorCpf() {
         // Arrange
-        Long cpf = 999L;
+        String cpf = "999";
         when(springDataRepository.findByCpf(cpf)).thenReturn(Optional.empty());
 
         // Act
@@ -85,7 +85,7 @@ class CustomerJpaAdapterTest {
     void deveRetornarPorIdQuandoEncontrado() {
         // Arrange
         Long id = 10L;
-        CustomerJpaEntity entity = new CustomerJpaEntity(id, "Ana", "ana@test.com", 111L);
+        CustomerJpaEntity entity = new CustomerJpaEntity(id, "Ana", "ana@test.com", "111");
 
         when(springDataRepository.findById(id)).thenReturn(Optional.of(entity));
 
@@ -105,10 +105,10 @@ class CustomerJpaAdapterTest {
         Customer customerDomain = new Customer();
         customerDomain.setName("Novo Cliente");
         customerDomain.setEmail("novo@test.com");
-        customerDomain.setCpf(12345678900L);
+        customerDomain.setCpf("12345678900");
 
         // Objeto simulado que o banco devolveria (com ID gerado)
-        CustomerJpaEntity savedEntity = new CustomerJpaEntity(50L, "Novo Cliente", "novo@test.com", 12345678900L);
+        CustomerJpaEntity savedEntity = new CustomerJpaEntity(50L, "Novo Cliente", "novo@test.com", "12345678900");
 
         when(springDataRepository.save(any(CustomerJpaEntity.class))).thenReturn(savedEntity);
 

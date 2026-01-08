@@ -27,7 +27,7 @@ class CustomerTest {
         Customer customer = new Customer();
         customer.setName("Maria Silva");
         customer.setEmail("maria.silva@example.com");
-        customer.setCpf(12345678900L);
+        customer.setCpf("12345678900");
 
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
         assertTrue(violations.isEmpty(), "Não deve haver violações para cliente válido");
@@ -38,7 +38,7 @@ class CustomerTest {
         Customer customer = new Customer();
         customer.setName("  ");
         customer.setEmail("maria.silva@example.com");
-        customer.setCpf(12345678900L);
+        customer.setCpf("12345678900");
 
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
         assertFalse(violations.isEmpty(), "Deve haver violações quando o nome estiver em branco");
@@ -50,7 +50,7 @@ class CustomerTest {
         Customer customer = new Customer();
         customer.setName("Maria Silva");
         customer.setEmail("email-invalido");
-        customer.setCpf(12345678900L);
+        customer.setCpf("12345678900");
 
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
         assertFalse(violations.isEmpty(), "Deve haver violações para email inválido");
@@ -62,7 +62,7 @@ class CustomerTest {
         Customer customer = new Customer();
         customer.setName("Maria Silva");
         customer.setEmail("maria.silva@example.com");
-        customer.setCpf(12345L); // cpf inválido
+        customer.setCpf("12345"); // cpf inválido
 
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
         assertFalse(violations.isEmpty(), "Deve haver violações para CPF com tamanho incorreto");

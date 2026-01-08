@@ -73,7 +73,7 @@ class CustomerServiceTest {
     @DisplayName("Deve retornar cliente quando CPF existir")
     void deveRetornarClientePorCpf() {
         // Arrange
-        Long cpf = 12345678900L;
+        String cpf = "12345678900";
         Customer customerMock = new Customer();
         customerMock.setCpf(cpf);
         customerMock.setName("Carlos");
@@ -95,7 +95,7 @@ class CustomerServiceTest {
     @DisplayName("Deve retornar Optional vazio quando CPF não existir")
     void deveRetornarVazioQuandoCpfNaoEncontrado() {
         // Arrange
-        Long cpfInexistente = 99999999999L;
+        String cpfInexistente = "99999999999";
         when(customerRepositoryPort.findByCpf(cpfInexistente)).thenReturn(Optional.empty());
 
         // Act

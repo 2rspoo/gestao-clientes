@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CustomerRepositoryPort {
     List<Customer> findAll();
-    Optional<Customer> findByCpf(Long cpf);
+    Optional<Customer> findByCpf(String cpf);
     Optional<Customer> findById(Long id);
     Customer save(Customer customer);
 }

@@ -27,14 +27,14 @@ public class CreateCustomerSteps {
         input = new Customer();
         input.setName(nome);
         input.setEmail(email);
-        input.setCpf(39475318852L);
+        input.setCpf("39475318852");
 
         // --- PREPARAÇÃO DO OUTPUT (O que o Mock vai retornar) ---
         outputEsperado = new Customer();
         outputEsperado.setId(1L);
         outputEsperado.setName(nome);
         outputEsperado.setEmail(email);
-        outputEsperado.setCpf(39475318852L);
+        outputEsperado.setCpf("39475318852");
 
         // 2. IMPORTANTE: Configure o comportamento do Mock aqui no @Dado (Pré-condição)
         // Você diz: "Quando o caso de uso for chamado com 'input', retorne 'outputEsperado'"

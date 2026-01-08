@@ -61,7 +61,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
     })
     @GetMapping("/cpf/{cpf}")
-    public ResponseEntity<CustomerResponseDTO> getByCpf(@PathVariable Long cpf) {
+    public ResponseEntity<CustomerResponseDTO> getByCpf(@PathVariable String cpf) {
         Customer customer = getCustomerByCpfUseCase.execute(cpf)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found with CPF: " + cpf));
         return ResponseEntity.ok(CustomerResponseDTO.fromDomain(customer));

@@ -28,7 +28,7 @@ class CreateCustomerServiceTest {
     @DisplayName("Deve criar cliente com sucesso quando CPF não existe")
     void deveCriarClienteComSucesso() {
         // --- ARRANGE (Preparação) ---
-        Long cpf = 12345678901L;
+        String cpf = "12345678901";
         Customer customerInput = new Customer();
         customerInput.setCpf(cpf);
         customerInput.setName("Maria");
@@ -58,7 +58,7 @@ class CreateCustomerServiceTest {
     @DisplayName("Deve lançar exceção quando CPF já existe")
     void deveLancarExcecaoQuandoCpfJaExiste() {
         // --- ARRANGE (Preparação) ---
-        Long cpf = 99988877700L;
+        String cpf = "99988877700";
         Customer customerInput = new Customer();
         customerInput.setCpf(cpf);
 
