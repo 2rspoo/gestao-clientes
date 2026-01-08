@@ -15,7 +15,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copia o jar gerado (o nome do artefato vem do seu pom.xml: cardapio-0.0.1-SNAPSHOT.jar)
-COPY --from=builder /app/target/cardapio-0.0.1-SNAPSHOT.jar ./app.jar
+COPY --from=builder /app/target/cliente-0.0.1-SNAPSHOT.jar ./app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
