@@ -48,7 +48,8 @@ Configure as variáveis necessárias no arquivo `application.properties` ou via 
 Executando a Aplicação
 Bash
 mvn spring-boot:run
-🧪 Testes e Qualidade
+
+##🧪 Testes e Qualidade
 O projeto conta com testes unitários para validar regras de domínio, use cases e adaptadores.
 Rodar Testes
 Bash
@@ -57,6 +58,7 @@ Relatório de Cobertura (JaCoCo)
 Após a execução dos testes, o relatório de cobertura pode ser visualizado em:
 target/site/jacoco/index.html
 http://localhost:63342/gestao-clientes2/cardapio/target/site/jacoco/index.html?_ijt=sv3u32eq03tutu8i3128g8k9f2&_ij_reload=RELOAD_ON_SAVE
+
 ## 🥒 BDD (Behavior Driven Development)
 
 Além dos testes unitários, a aplicação utiliza **Cucumber** para testes de comportamento, garantindo que as funcionalidades atendam aos requisitos de negócio descritos em linguagem natural (Gherkin).
@@ -75,21 +77,20 @@ Análise de Código (SonarQube)
 Para enviar as métricas para o Sonar:
 Bash
 mvn clean verify sonar:sonar -Dsonar.token=SEU_TOKEN
-🔌 API Endpoints (Resumo)
+
+##🔌 API Endpoints (Resumo)
 Método	Endpoint	Descrição
 POST	/clientes	Cadastra um novo cliente (Nome, CPF, Email)
 GET	/clientes/{cpf}	Identifica um cliente pelo CPF
 GET	/clientes	Lista todos os clientes (Uso administrativo)
 
-A documentação completa (Swagger) pode ser acessada em: http://localhost:8080/swagger-ui.html
 
 
-Acesso ao Frontend da Aplicação:
-
+## Acesso ao Frontend da Aplicação:
 Abra o arquivo index.html, webhook ou stress.html diretamente no seu navegador. As interfaces carregarão os dados da API.
 
-Acesso a Documentação da API (Swagger UI):
-
+## Acesso a Documentação da API (Swagger UI):
+A documentação completa (Swagger) pode ser acessada em: http://localhost:8080/swagger-ui.html
 A documentação interativa completa da API está disponível em:
 http://localhost:30001/swagger-ui.html
 
