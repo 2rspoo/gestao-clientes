@@ -71,7 +71,11 @@ Os testes BDD são executados juntamente com a suíte de testes principal ou atr
 Bash
 # Executa todos os testes (Unitários + BDD)
 mvn clean test
-Relatório do Cucumber: Após a execução, um relatório detalhado pode ser encontrado em: target/cucumber-reports/cucumber.html (ou caminho similar configurado no seu projeto).
+Relatório do Cucumber: Após a execução, um relatório detalhado pode ser encontrado em: target/cucumber-reports/cucumber.html 
+http://localhost:63342/gestao-clientes3/cliente/target/cucumber-reports/cucumber.html?_ijt=tnfatucmubv653vnu13aa0ogkg&_ij_reload=RELOAD_ON_SAVE
+
+<img width="1077" height="223" alt="image" src="https://github.com/user-attachments/assets/9fd50287-652e-4dab-9891-2d74d8f55725" />
+
 
 Análise de Código (SonarQube)
 Para enviar as métricas para o Sonar:
