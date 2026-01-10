@@ -4,126 +4,85 @@ Contribuições:
 Camila Rabello Spoo Goshima - Discord: camilaspoo - 11 973091025
 Rodrigo Rabello Spoo - Discord: srsinistro9459 - 11 981046096
 
-Descrição:
-Este projeto é um sistema de pedidos fast food, onde o cliente pode escolher os produtos do seu pedido e acompanhar o status em tempo real, sem a necessidade de interação humana direta para o avanço das fases do pedido.
-
 Vídeo:
 https://www.youtube.com/watch?v=oYuT7maHG5g
 
 Repositório:
-https://github.com/CRASPOO/SistemaPedidos
+https://github.com/2rspoo/gestao-clientes
 
-Arquitetura da Solução
-Como arquiteto de software, o design desta solução visa atender aos requisitos de negócio e infraestrutura, garantindo robustez, escalabilidade e observabilidade em um ambiente de desenvolvimento local.
+# 👤 API de Gestão de Clientes (Tech Challenge)
+Este projeto é um microsserviço responsável pela gestão e identificação de clientes da lanchonete. Ele permite o cadastro de novos clientes e a identificação por CPF, garantindo a centralização dos dados de usuários para os demais serviços do ecossistema.
+O projeto segue estritamente os princípios da **Arquitetura Hexagonal (Ports and Adapters)** para garantir manutenibilidade e desacoplamento.
 
-Requisitos de Negócio
-Gestão Completa de Pedidos: Capacidade de criar novos pedidos, visualizar o histórico e avançar o status de cada pedido (ex: "recebido", "em preparação", "pronto para entrega").
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.1-green)
+![Coverage](https://img.shields.io/badge/Coverage-Jacoco-success)
+![Build](https://img.shields.io/badge/Build-Maven-blue)
 
-Processamento de Pagamentos: 
-Gerenciamento do status de pagamentos (pendente, aprovado, recusado) via webhook.
+## 🏛️ Arquitetura
+A aplicação foi desenhada para isolar o domínio das implementações externas:
+* **Domain:** Entidades centrais (`Cliente`, `CPF`, etc) e regras de negócio (validação de CPF, unicidade).
+* **Application (Use Cases):** Casos de uso como `CreateClient`, `FindClientByCpf`.
+* **Ports (In/Out):** Contratos que definem como o mundo externo interage com a aplicação e como a aplicação persiste dados.
+* **Infrastructure (Adapters):** Implementações de Banco de Dados (Repository) e Controladores REST.
 
-Catálogo de Produtos Dinâmico: 
-Exibição de produtos organizados por categorias, com informações detalhadas.
+## 🛠️ Tecnologias Utilizadas
+* **Linguagem:** Java 21
+* **Framework:** Spring Boot 3.4.1
+* **Banco de Dados:** PostgreSQL/MySQL 
+* **Documentação:** SpringDoc OpenAPI (Swagger)
+* **Qualidade:** JaCoCo (Cobertura de testes), SonarQube
+* **Containerização:** Docker
 
-Alta Disponibilidade e Resiliência: 
-A aplicação deve ser capaz de operar continuamente, mesmo sob condições de falha de componentes.
+## 🚀 Como Rodar o Projeto
+### Pré-requisitos
+* Java 21 SDK
+* Maven
+* Docker (opcional)
 
-Escalabilidade Automática (Autoscaling): 
-A capacidade de processamento da aplicação deve se adaptar dinamicamente ao volume de requisições, aumentando ou diminuindo o número de instâncias da aplicação conforme a demanda.
+### Configuração de Ambiente
+Configure as variáveis necessárias no arquivo `application.properties` ou via variáveis de ambiente:
+# spring.datasource.url=jdbc:postgresql://localhost:5432/clientes
+# spring.datasource.username=user
+# spring.datasource.password=pass
+Executando a Aplicação
+Bash
+mvn spring-boot:run
+🧪 Testes e Qualidade
+O projeto conta com testes unitários para validar regras de domínio, use cases e adaptadores.
+Rodar Testes
+Bash
+mvn clean test
+Relatório de Cobertura (JaCoCo)
+Após a execução dos testes, o relatório de cobertura pode ser visualizado em:
+target/site/jacoco/index.html
+http://localhost:63342/gestao-clientes2/cardapio/target/site/jacoco/index.html?_ijt=sv3u32eq03tutu8i3128g8k9f2&_ij_reload=RELOAD_ON_SAVE
+## 🥒 BDD (Behavior Driven Development)
 
-Validação de Desempenho: 
-Ferramentas integradas para simular picos de tráfego e validar o comportamento de escalabilidade da aplicação.
+Além dos testes unitários, a aplicação utiliza **Cucumber** para testes de comportamento, garantindo que as funcionalidades atendam aos requisitos de negócio descritos em linguagem natural (Gherkin).
+📂 Estrutura dos Testes
+* **Features (.feature):** Localizados em `src/test/resources/features`. Descrevem os cenários de uso (ex: Criar Pedido, Atualizar Status).
+* **Step Definitions:** Localizados em `src/test/java/.../bdd`. Conectam os passos do Gherkin com o código Java.
 
-Requisitos de Infraestrutura (Docker Desktop Local)
-A infraestrutura foi projetada para ser executada localmente no Kubernetes do Docker Desktop, um ambiente que replica funcionalidades de um cluster Kubernetes de produção de forma leve e eficiente.
+▶️ Como Rodar os Testes BDD
+Os testes BDD são executados juntamente com a suíte de testes principal ou através de um perfil específico (dependendo da sua configuração).
+Bash
+# Executa todos os testes (Unitários + BDD)
+mvn clean test
+Relatório do Cucumber: Após a execução, um relatório detalhado pode ser encontrado em: target/cucumber-reports/cucumber.html (ou caminho similar configurado no seu projeto).
 
-Os componentes-chave da arquitetura são:
+Análise de Código (SonarQube)
+Para enviar as métricas para o Sonar:
+Bash
+mvn clean verify sonar:sonar -Dsonar.token=SEU_TOKEN
+🔌 API Endpoints (Resumo)
+Método	Endpoint	Descrição
+POST	/clientes	Cadastra um novo cliente (Nome, CPF, Email)
+GET	/clientes/{cpf}	Identifica um cliente pelo CPF
+GET	/clientes	Lista todos os clientes (Uso administrativo)
 
-Deployment: Gerencia o ciclo de vida dos pods da aplicação (spring-app-deployment) e do banco de dados (postgres-db-deployment). Garante que o número desejado de réplicas esteja sempre em execução e que a aplicação se recupere automaticamente em caso de falhas.
+A documentação completa (Swagger) pode ser acessada em: http://localhost:8080/swagger-ui.html
 
-Service: Expõe as aplicações dentro e fora do cluster.
-
-db-service (ClusterIP): Permite que a aplicação Spring Boot se comunique com o banco de dados PostgreSQL internamente no cluster, usando um nome de serviço estável.
-
-spring-app-service (NodePort): Expõe a API da aplicação Spring Boot para acesso externo (ex: navegador, Postman) através de uma porta específica do nó (30001 no Docker Desktop).
-
-HorizontalPodAutoscaler (HPA): O componente central para a escalabilidade automática da aplicação spring-app. Ele monitora a utilização de CPU dos pods da aplicação e, se o uso exceder um limite configurado (ex: 70%), o HPA aumenta o número de réplicas até o máximo definido. Quando a carga diminui, ele reduz as réplicas. O HPA depende do Metrics Server.
-
-Metrics Server: Essencial para o funcionamento do HPA. Ele coleta métricas de uso de recursos (CPU e memória) dos pods e nós do cluster e as disponibiliza para o Kubernetes API Server, que por sua vez as fornece ao HPA.
-
-PersistentVolumeClaim (PVC): O postgres-db-pvc solicita armazenamento persistente para o banco de dados PostgreSQL, garantindo que os dados não sejam perdidos mesmo que o pod do banco de dados seja reiniciado ou movido.
-
-Secrets e ConfigMaps: Utilizados para gerenciar a configuração da aplicação e credenciais de forma segura e desacoplada do código.
-
-db-init-script: Um ConfigMap que contém scripts SQL para inicialização do banco de dados.
-
-Pré-requisitos
-Certifique-se de que os seguintes softwares estão instalados e configurados no seu ambiente:
-
-Java Development Kit (JDK): Versão 17 ou superior.
-
-Docker Desktop: Com o Kubernetes habilitado nas configurações (Settings > Kubernetes > Enable Kubernetes).
-
-kubectl: A ferramenta de linha de comando para interagir com o cluster Kubernetes.
-
-Helm: O gerenciador de pacotes do Kubernetes.
-
-Instalação do Chocolatey (para Windows, se não tiver):
-Abra o PowerShell como Administrador e execute:
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-Importante: Feche e reabra o PowerShell como Administrador após a instalação do Chocolatey.
-Instalação do Helm (após Chocolatey):
-Abra o PowerShell como Administrador e execute:
-choco install kubernetes-helm
-Importante: Feche e reabra o PowerShell como Administrador novamente para que o comando helm seja reconhecido.
-
-Instalação Aplicação
-Siga estes passos para configurar e implantar o projeto no seu cluster Kubernetes local.
-
-Clone o repositório:
-git clone https://github.com/CRASPOO/SistemaPedidos
-
-Construa a imagem Docker da sua aplicação Spring Boot:
-Navegue até o diretório raiz do seu projeto Spring Boot (onde está o Dockerfile).
-docker build -t order .
-
-Após a construção da imagem, volte para o diretório kubernetes:
-Implante os recursos do Kubernetes (Ordem Importante!):
-
-Recursos da Base de Dados (PostgreSQL):
-
-kubectl apply -f db-secrets.yaml
-kubectl apply -f db-config.yaml
-kubectl apply -f db-init-config.yaml
-kubectl apply -f postgres-pvc.yaml
-kubectl apply -f db-deployment.yaml
-kubectl apply -f db-service.yaml
-
-Recursos da Aplicação Spring Boot:
-
-kubectl apply -f api-deployment.yaml
-kubectl apply -f api-service.yaml
-
-Instale o Metrics Server (via Helm):
-
-helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-helm install metrics-server metrics-server/metrics-server --version 3.11.0 --namespace kube-system --set "args={'--kubelet-insecure-tls','--kubelet-preferred-address-types=InternalIP'}"
-Aguarde cerca de 1 a 2 minutos para o pod do Metrics Server subir e começar a coletar métricas.
-
-Implante o Horizontal Pod Autoscaler (HPA):
-
-kubectl apply -f spring-app-hpa.yaml
-
-Verifique o status de todos os pods:
-
-kubectl get pods -A
-
-Aguarde até que todos os pods (incluindo postgres-db, spring-app e metrics-server no namespace kube-system) estejam com o status Running.
-
-Inicialize o banco de dados:
-
-Execute o script SQL principal para popular o banco de dados. Você pode usar um cliente PostgreSQL (como o psql ou DBeaver) e conectar-se ao banco de dados exposto pelo Kubernetes (geralmente localhost:30001 se você configurou o serviço do banco de dados para NodePort, ou acessar via kubectl port-forward).
-Se carga do bando de dados não for feita automático   script está localizado em: SistemaPedidos\script\script.sql
 
 Acesso ao Frontend da Aplicação:
 
@@ -134,12 +93,6 @@ Acesso a Documentação da API (Swagger UI):
 A documentação interativa completa da API está disponível em:
 http://localhost:30001/swagger-ui.html
 
-Teste de Estresse e Validação de Autoscaling (Opcional):
-
-Na página stress.html, clique no botão "Iniciar Teste Simples" para simular uma carga intensa de requisições na sua API.
-Em um terminal separado, monitore o comportamento do HPA em tempo real:
-kubectl get hpa spring-app-hpa -w
-Observe como a coluna TARGETS (utilização de CPU) aumenta e, em resposta, a coluna REPLICAS (número de pods) irá escalar automaticamente para lidar com a carga.
 
 
 
