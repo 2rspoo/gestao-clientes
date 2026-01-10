@@ -10,7 +10,7 @@ https://www.youtube.com/watch?v=oYuT7maHG5g
 Repositório:
 https://github.com/2rspoo/gestao-clientes
 
-# 👤 API de Gestão de Clientes (Tech Challenge)
+## 👤 Gestão de Clientes
 Este projeto é um microsserviço responsável pela gestão e identificação de clientes da lanchonete. Ele permite o cadastro de novos clientes e a identificação por CPF, garantindo a centralização dos dados de usuários para os demais serviços do ecossistema.
 O projeto segue estritamente os princípios da **Arquitetura Hexagonal (Ports and Adapters)** para garantir manutenibilidade e desacoplamento.
 
@@ -35,16 +35,16 @@ A aplicação foi desenhada para isolar o domínio das implementações externas
 * **Containerização:** Docker
 
 ## 🚀 Como Rodar o Projeto
-### Pré-requisitos
+## Pré-requisitos
 * Java 21 SDK
 * Maven
 * Docker (opcional)
 
-### Configuração de Ambiente
+## Configuração de Ambiente
 Configure as variáveis necessárias no arquivo `application.properties` ou via variáveis de ambiente:
-# spring.datasource.url=jdbc:postgresql://localhost:5432/clientes
-# spring.datasource.username=user
-# spring.datasource.password=pass
+spring.datasource.url=jdbc:postgresql://localhost:5432/clientes
+spring.datasource.username=user
+spring.datasource.password=pass
 Executando a Aplicação
 Bash
 mvn spring-boot:run
@@ -71,7 +71,7 @@ Além dos testes unitários, a aplicação utiliza **Cucumber** para testes de c
 ▶️ Como Rodar os Testes BDD
 Os testes BDD são executados juntamente com a suíte de testes principal ou através de um perfil específico (dependendo da sua configuração).
 Bash
-# Executa todos os testes (Unitários + BDD)
+## Executa todos os testes (Unitários + BDD)
 mvn clean test
 Relatório do Cucumber: Após a execução, um relatório detalhado pode ser encontrado em: target/cucumber-reports/cucumber.html 
 http://localhost:63342/gestao-clientes3/cliente/target/cucumber-reports/cucumber.html?_ijt=tnfatucmubv653vnu13aa0ogkg&_ij_reload=RELOAD_ON_SAVE
