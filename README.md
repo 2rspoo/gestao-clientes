@@ -58,6 +58,8 @@ Relatório de Cobertura (JaCoCo)
 Após a execução dos testes, o relatório de cobertura pode ser visualizado em:
 target/site/jacoco/index.html
 http://localhost:63342/gestao-clientes2/cardapio/target/site/jacoco/index.html?_ijt=sv3u32eq03tutu8i3128g8k9f2&_ij_reload=RELOAD_ON_SAVE
+<img width="1313" height="228" alt="image" src="https://github.com/user-attachments/assets/b0d334ba-2587-42ba-970a-0e99ee6bf6f1" />
+
 
 ## 🥒 BDD (Behavior Driven Development)
 
