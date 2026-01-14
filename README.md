@@ -1,11 +1,11 @@
-Grupo 136
+Grupo 96
 
 Contribuições:
 Camila Rabello Spoo Goshima - Discord: camilaspoo - 11 973091025
 Rodrigo Rabello Spoo - Discord: srsinistro9459 - 11 981046096
 
 Vídeo:
-https://www.youtube.com/watch?v=oYuT7maHG5g
+https://www.youtube.com/watch?v=YQabQ-ai_8I
 
 Repositório:
 https://github.com/2rspoo/gestao-clientes
@@ -83,6 +83,8 @@ Análise de Código (SonarQube)
 Para enviar as métricas para o Sonar:
 Bash
 mvn clean verify sonar:sonar -Dsonar.token=SEU_TOKEN
+<img width="1112" height="190" alt="image" src="https://github.com/user-attachments/assets/4ce27368-0f93-4226-8890-9b8c414498a1" />
+
 
 ##🔌 API Endpoints (Resumo)
 Método	Endpoint	Descrição
